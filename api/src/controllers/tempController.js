@@ -1,34 +1,41 @@
-const axios = require('axios');
-const { Dog, Temperament } = require('../db');
+const axios = require("axios");
 const urLink = `https://api.thedogapi.com/v1/breeds`;
+const { Temperament } = require("../db");
 
-const getApi = async() => {
-    const api = await axios.get(urLink);
-    const info = await api.data.map((e) => {
-        let temperamentArray = [];
-        let heightArr = [];
-        let weightArr = [];
+const getTemperamentData = async () => {
+    try {
+		// get temperaments from DB
+		const temperamentsDb = await Temperament.findAll();
 
-        if (e.temperament) temperamentArray = e.temperament.split(", ");
+		if (temperamentsDb.length) {
+		return [...temperamentsDb].sort();
+		} else {
+		// get temperaments from DOG API
+			const { data } = await axios.get(urLink);
 
-        if (e.height.metric) heightArr = e.height.metric.split(" - ");
+			var temperaments = []
+			data.map((d) => {
+				let temperament = d.hasOwnProperty("temperament")
+					? d.temperament.split(",")
+					: []
+				const trimmed = temperament.map((t) => t.trim());
+				temperaments = [...temperaments, ...trimmed];
+			})
 
-        if (e.weight.metric) weightArr = e.weight.metric.split(" - ");
+			const tempSet = new Set([...temperaments]);
+			const sorted = [...tempSet].sort();
 
-        return {
-            id: e.id,
-            name: e.name,
-            height: heightArr,
-            weight: weightArr,
-            temperaments: temperamentArray,
-            life_span: e.life_span,
-            image: e.image.url,
-        };
-    });
+			const bulk = sorted.map((t, i) => {
+				return { name: t }
+			});
 
-    return info;
-};
-
-module.exports = {
-    getApi
+			const temperamentsInserted = await Temperament.bulkCreate(bulk);
+			return temperamentsInserted;
+		}
+    } catch (error) {
+        console.error('getTemperamentData: ', error.message);
+		throw new Error(error.message);
+	}
 }
+
+module.exports = { getTemperamentData }

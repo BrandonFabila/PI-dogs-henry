@@ -1,4 +1,3 @@
-// const { Router } = require('express');
 const express = require('express');
 const { Dog, Temperament } = require('../db.js');
 const { getAll } = require('../controllers/dogController.js');
@@ -25,7 +24,6 @@ dogRouter.get("/", async (req, res) => {
     };
 });
 
-//get dogs from temp
 
 
 //get dogs from id raza
@@ -36,6 +34,7 @@ dogRouter.get("/:idRaza", async (req, res) => {
         const dog = allDogs.filter((e) => e.id == idRaza);
     
         if (dog.length) return res.json(dog);
+
         else return res.status(404).send("Dog not found");
     } catch (error) {
         res.status(404).send({error: error.message})
@@ -43,7 +42,7 @@ dogRouter.get("/:idRaza", async (req, res) => {
 });
 
 //post dogs
-dogRouter.post("/dog", async (req, res) => {
+dogRouter.post("/new", async (req, res) => {
     const { //peticion de body gguarda en una variable
         name, 
         min_height, 
@@ -55,6 +54,11 @@ dogRouter.post("/dog", async (req, res) => {
         temperaments,
         image, 
     } = req.body;
+
+    if( !name || !max_height || !min_weight || !max_weight || !min_life || !max_life || !temperaments) {
+        res.status(400).send("Completa los campos")
+    };
+
     const mixedHeight = [];
     const mixedWeight = [];
     let mixedLifeSpan = null;

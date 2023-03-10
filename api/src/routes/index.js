@@ -1,7 +1,7 @@
 const { Router } = require('express');
 // Importar todos los routers;
-const { dogRouter } = require('./dogRouter.js');
-const { tempRouter } = require('./tempRouter.js');
+const { dogRouter } = require('./dogRouter');
+const { tempRouter } = require('./tempRouter');
 
 const router = Router();
 
@@ -9,4 +9,4 @@ const router = Router();
 router.use('/dogs', dogRouter);
 router.use('/temp', tempRouter);
 
-module.exports = { router };
+module.exports = router;

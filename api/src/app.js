@@ -2,8 +2,8 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-// const routes = require('./routes/index.js');
-const { dogRouter } = require('./routes/dogRouter.js');
+const routes = require('./routes/index.js');
+// const { dogRouter } = require('./routes/dogRouter.js');
 
 require('./db.js'); /*sequelize.models: { Temperament, Dog }, conn: sequelize,*/
 
@@ -24,8 +24,8 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use('/dogs', dogRouter);
-// server.use('/', routes);
+// server.use('/dogs', dogRouter);
+server.use('/', routes);
 
 
 // Error catching endware.
