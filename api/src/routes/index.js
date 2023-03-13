@@ -7,6 +7,6 @@ const router = Router();
 
 // Configurar los routers
 router.use('/dogs', dogRouter);
-router.use('/temp', tempRouter);
+router.use('/temperament', tempRouter);
 
 module.exports = router;
