@@ -36,7 +36,6 @@
   width: 26.75dvw;
   display: flex;
   flex-direction: row;
-  align-items:start;
   justify-content:space-around;
 }
 .buttonBuscar {
