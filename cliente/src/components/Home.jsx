@@ -20,7 +20,7 @@ export default function Home() {
     const indexOfLastDog = currentPage * dogsPerPage
     const indexOfFirstDog = indexOfLastDog - dogsPerPage
     const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog)
-    const [_orden, setOrden] = useState('')
+    const [, setOrden] = useState('')
 
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
@@ -104,12 +104,14 @@ export default function Home() {
                     </li>
                 </ul>
             </div>
-            <Paginado dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginado={paginado} />
+            <div>
+            <Paginado  dogsPerPage={dogsPerPage} allDogs={allDogs.length} paginado={paginado} />
+            </div>
             <div className={styles.container}>
                 {
                     currentDogs?.map((e) => {
                         return (
-                            <div key={e.id} className={styles.cardHome}>
+                            <div key={e.id} className={styles.cardHome} >
                                 <Link to={'/home/' + e.id} style={{ textDecoration: 'none' }}>
                                     <Card
                                         name={e.name}
@@ -125,7 +127,6 @@ export default function Home() {
                     })
                 }
             </div>
-            <Paginado dogsPerPage={dogsPerPage} allDogs={allDogs.lenght} paginado={paginado} />
         </div>
     )
 }

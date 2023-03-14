@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getTemperaments, postDogs } from '../redux/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import '../styles/DogCreate.css'
-import robot from '../styles/robot.jpg'
+import def from '../styles/ICON.jpg'
+import SearchBar from "./SearchBar";
 
 function validate(input) {
     let errors = {}
@@ -135,7 +136,7 @@ export default function DogCreate() {
         if (!Object.getOwnPropertyNames(errors).length && input.name && input.heightMin && input.heightMax && input.weightMin && input.weightMax && input.life_span /*&& input.temperaments.length*/ /*&& input.origins.length*/) {
 
             if (!input.image) {
-                input.image = robot
+                input.image = def
             }
             dispatch(postDogs(input))
             alert('Se creo una nueva raza')
@@ -164,98 +165,118 @@ export default function DogCreate() {
 
     return (
         <div className="divCreate">
-            <Link to='/home'><button className="buttonHome"> Pagina Principal</button> </Link>
-            <h1 className="title">Crea tu propia raza de perro</h1>
-            <div className="super">
-                <form onSubmit={e => handleSubmit(e)}>
-                    <div>
-                        <label><strong>Nombre de la Raza: </strong></label>
-                        <input type="text" value={input.name} name='name' onChange={e => handleChange(e)} />
-                        {errors.name && (
-                            <p className="error">{errors.name}</p>
-                        )}
-                    </div>
+            <div>
+                <SearchBar/>
+            </div>
 
-                    <div>
-                        <label><strong>Altura minima: </strong></label>
-                        <input type="text" value={input.heightMin} name='heightMin' onChange={e => handleChange(e)} />
-                        <label><strong> cm.</strong></label>
-                        {errors.heightMin && (
-                            <p className="error">{errors.heightMin}</p>
-                        )}
-                    </div>
+            <div>
+            <form className="formm" onSubmit={e => handleSubmit(e)}>
+                <div className='lines' >
+                    <label className="inp" for="inp">
+                        <input type="text" value={input.name} name='name'  onChange={e => handleChange(e)}/>
+                        <span className="label">Nombre de la Raza: </span>
+                        <span className="focus-bg"></span>
+                    </label>
+                    <label className="inp" for="inp">
+                        <input type="text" value={input.image} name='image' onChange={e => handleChange(e)}/>
+                        <span className="label">Imagen:</span>
+                        <span className="focus-bg"></span>
+                    </label>
+                </div>
+                <div>
+                {errors.name && (
+                        <h1 className="error">{errors.name}</h1>
+                    )}
+                </div>
+                <div className='lines' >         
+                    <label className="inp" for="inp">
+                        <input type="text" value={input.heightMin} name='heightMin' onChange={e => handleChange(e)}/>
+                        <span className="label">Altura minima: cm</span>
+                        <span className="focus-bg"></span>
+                    </label>
+                    <label className="inp" for="inp">
+                        <input type="text" value={input.heightMax} name='heightMax' onChange={e => handleChange(e)}/>
+                        <span className="label">Altura maxima: cm</span>
+                        <span className="focus-bg"></span>
+                    </label>
+                </div>
+                <div>
+                    {errors.heightMin && (
+                        <p className="error">{errors.heightMin}</p>
+                    )}
+                    {errors.heightMax && (
+                        <p className="error">{errors.heightMax}</p>
+                    )}
+                </div>
+                <div className='lines' >
+                    <label className="inp" for="inp">
+                        <input type="text" value={input.weightMin}  name='weightMin' onChange={e => handleChange(e)}/>
+                        <span className="label">Peso minimo: kg</span>
+                        <span className="focus-bg"></span>
+                    </label>
+                    <label className="inp" for="inp">
+                        <input type="text" value={input.weightMax} name='weightMax' onChange={e => handleChange(e)}/>
+                        <span className="label">Peso maximo: kg</span>
+                        <span className="focus-bg"></span>
+                    </label>
+                </div>
+                <div>
+                    {errors.weightMin && (
+                        <p className="error">{errors.weightMin}</p>
+                    )}
+                    {errors.weightMax && (
+                        <p className="error">{errors.weightMax}</p>
+                    )}
+                </div>
+                <div className='lines' >
+                    <label className="inp" for="inp">
+                        <input type="text" value={input.life_span} name='life_span' onChange={e => handleChange(e)}/>
+                        <span className="label">Minimo de años de vida:</span>
+                        <span className="focus-bg"></span>
+                    </label>
+                    <label className="inp" for="inp">
+                        <input type="text" value={input.life_span} name='life_span' onChange={e => handleChange(e)}/>
+                        <span className="label">Maximo de años de vida:</span>
+                        <span className="focus-bg"></span>
+                    </label>
+                </div>
+                <div>
+                    {errors.life_span && (
+                        <p className="error">{errors.life_span}</p>
+                    )}
+                    {errors.life_span && (
+                        <p className="error">{errors.life_span}</p>
+                    )}
+                </div>
 
-                    <div>
-                        <label><strong>Altura maxima: </strong></label>
-                        <input type="text" value={input.heightMax} name='heightMax' onChange={e => handleChange(e)} />
-                        <label><strong> cm.</strong></label>
-                        {errors.heightMax && (
-                            <p className="error">{errors.heightMax}</p>
-                        )}
-                    </div>
-
-                    <div>
-                        <label><strong>Peso minimo: </strong></label>
-                        <input type="text" value={input.weightMin} name='weightMin' onChange={e => handleChange(e)} />
-                        <label><strong> Kg.</strong></label>
-                        {errors.weightMin && (
-                            <p className="error">{errors.weightMin}</p>
-                        )}
-                    </div>
-
-                    <div>
-                        <label><strong>Peso maximo: </strong></label>
-                        <input type="text" value={input.weightMax} name='weightMax' onChange={e => handleChange(e)} />
-                        <label><strong> Kg.</strong></label>
-                        {errors.weightMax && (
-                            <p className="error">{errors.weightMax}</p>
-                        )}
-                    </div>
-
-                    <div>
-                        <label><strong>Esperanza de Vida: </strong></label>
-                        <input type="text" value={input.life_span} name='life_span' onChange={e => handleChange(e)} />
-                        <label><strong> años</strong></label>
-                        {errors.life_span && (
-                            <p className="error">{errors.life_span}</p>
-                        )}
-                    </div>
-
-                    <div>
-                        <label><strong>Imagen: </strong></label>
-                        <input type="text" value={input.image} name='image' onChange={e => handleChange(e)} />
-
-                    </div>
-
-                    <div>
-                        <select onChange={e => handleSelect(e)}>
-                            <option value='selected' hidden >Temperamentos</option>
-                            {allTemperaments?.sort(function (a, b) {
-                                if (a.name < b.name) return -1
-                                if (a.name > b.name) return 1
-                                return 0
-                            }).map(temp => {
-                                return (
-                                    <option value={temp.name} key={temp.id}>{temp.name}</option>
-                                )
-                            })}
-                        </select>
-                        {input.temperaments.map(e => {
+                <div>
+                    <select onChange={e => handleSelect(e)}>
+                        <option value='selected' hidden >Temperamentos</option>
+                        {allTemperaments?.sort(function (a, b) {
+                            if (a.name < b.name) return -1
+                            if (a.name > b.name) return 1
+                            return 0
+                        }).map(temp => {
                             return (
-                                <ul className="allSelecction" key={e}>
-                                    <li>
-                                        <p className="selecction"><strong>{e}</strong></p>
-                                        <button onClick={() => handleDeleteTemperament(e)} className='x'>X</button>
-                                    </li>
-                                </ul>
+                                <option value={temp.name} key={temp.id}>{temp.name}</option>
                             )
                         })}
-                    </div>
+                    </select>
+                    {input.temperaments.map(e => {
+                        return (
+                            <ul className="allSelecction" key={e}>
+                                <li>
+                                    <p className="selecction"><strong>{e}</strong></p>
+                                    <button onClick={() => handleDeleteTemperament(e)} className='x'>X</button>
+                                </li>
+                            </ul>
+                        )
+                    })}
+                </div>
+                <button type="submit" className="boop" ><strong>Crear</strong></button>
+                
 
-
-                    <button type="submit" className="boop" ><strong>Crear</strong></button>
-
-                </form>
+            </form>
             </div>
         </div>
     )

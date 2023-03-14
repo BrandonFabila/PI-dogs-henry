@@ -95,7 +95,7 @@ export function getDetail(id) {
 
 export function postDogs(payload) {
     return async function (dispatch) {
-        const response = await axios.post(`${serv}dogs/new`, payload)
+        const response = await axios.post(`${serv}dogs`, payload)
         console.log(response)
         return response
     }

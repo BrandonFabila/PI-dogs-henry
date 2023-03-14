@@ -1,75 +1,13 @@
 .divCreate {
-    background-color: #1a1a1a;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    text-align: center;
-}
-
-.buttonHome {
-    border-radius: 4px;
-    background-color: #121212;
-    border: none;
-    color: #fff;
-    text-align: center;
-    font-size: 25px;
-    padding: 20px;
-    transition: all 0.5s;
-    cursor: pointer;
-    left: 37%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.buttonHome span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-}
-
-.buttonHome span:after {
-    content: '\00ab';
-    opacity: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-
-.buttonHome :hover span {
-    padding-left: 25px;
-}
-
-.buttonHome:hover {
-    background-color: #fff;
-    color: #121212;
-}
-
-.buttonHome:hover span:after {
-    opacity: 1;
-    right: 0;
-}
-
-.title {
-    color: #fff;
-    justify-content: center;
+    width: 100dvw;
+    background-image:url("../../public/extra/background.jpg");
+    background-repeat:initial;
 }
 
 label {
     color: #fff;
     font-size: medium;
     margin: 10px;
-}
-
-input {
-    background-color: #121212;
-    border-radius: 4px;
-    margin: 50px;
-    color: #fff;
-}
-
-input:focus {
-    background-color: rgb(52, 52, 52);
-    color: whitesmoke;
 }
 
 .allSelecction {
@@ -136,8 +74,123 @@ select:focus {
 
 .error {
     color: rgb(208, 3, 3);
+    width: max-content;
+    background-color: black;
     font-family:'Times New Roman', Times, serif;
     font-size: medium;
     font-weight: bolder;
     margin-top: 0;
 }
+
+.formm{
+  width: 100dvw;
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+}
+
+.lines{
+  margin-top: 2.5dvw;
+  margin-bottom: 2.5dvw;
+
+  display: flex;
+  flex-direction:row;
+  justify-content: space-evenly;
+  height: 15dvh;
+  width: fit-content;
+
+  position: relative;
+  -webkit-box-shadow: 4px 8px 19px -3px rgb(0, 0, 0);
+  box-shadow: 4px 8px 19px -3px rgb(0, 0, 0);
+  transition: all 250ms;
+  overflow: hidden;
+}
+
+.inp {
+    position: relative;
+    margin-left: 5dvw;
+    margin-right: 5dvw;
+    width: 25dvw;
+    max-width: 25dvw;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  .inp .label {
+    position: absolute;
+    top: 20px;
+    left: 12px;
+    font-size: 5dvh;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    transform-origin: 0 0;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.2s ease;
+    pointer-events: none;
+  }
+  
+  .inp .focus-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25dvw;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.05);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  
+  .inp input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 25dvw;
+    border: 0;
+    font-family: inherit;
+    padding: 16px 12px 0 12px;
+    height: 56px;
+    font-size: 16px;
+    font-weight: 400;
+    background: rgba(0, 0, 0, 0.02);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+    color: #000;
+    transition: all 0.15s ease;
+  }
+  
+  .inp input:hover {
+    background: rgba(0, 0, 0, 0.04);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  }
+  
+  .inp input:not(:-moz-placeholder-shown) + .label {
+    color: rgba(0, 0, 0, 0.5);
+    transform: translate3d(0, -12px, 0) scale(0.75);
+  }
+  
+  .inp input:not(:-ms-input-placeholder) + .label {
+    color: rgba(0, 0, 0, 0.5);
+    transform: translate3d(0, -12px, 0) scale(0.75);
+  }
+  
+  .inp input:not(:placeholder-shown) + .label {
+    color: rgba(0, 0, 0, 0.5);
+    transform: translate3d(0, -12px, 0) scale(0.75);
+  }
+  
+  .inp input:focus {
+    background: rgba(0, 0, 0, 0.05);
+    outline: none;
+    box-shadow: inset 0 -2px 0 #0077FF;
+  }
+  
+  .inp input:focus + .label {
+    color: #0077ff00;
+    transform: translate3d(0, -12px, 0) scale(0.75);
+  }
+  
+  .inp input:focus + .label + .focus-bg {
+    transform: scaleX(1);
+    transition: all 0.1s ease;
+  }

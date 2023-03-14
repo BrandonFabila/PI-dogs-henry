@@ -1,4 +1,6 @@
 .cont{
+  background-image:url("../../public/extra/background.jpg");
+  background-repeat:initial;
   height: fit-content;
   display: flex;
   align-items: center;
@@ -29,6 +31,30 @@
   color: rgb(255, 255, 255);
   border-color: white;
 }
+
+.searchtwo{
+  width: 26.75dvw;
+  display: flex;
+  flex-direction: row;
+  align-items:start;
+  justify-content:space-around;
+}
+.buttonBuscar {
+  padding: 15px 25px;
+  height: 4dvw;
+  border: unset;
+  border-radius: 15px;
+  color: #212121;
+  z-index: 1;
+  background: #e8e8e8;
+  position: relative;
+  font-weight: 1000;
+  font-size: 17px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgb(0, 0, 0);
+  box-shadow: 4px 8px 19px -3px rgb(0, 0, 0);
+  transition: all 250ms;
+  overflow: hidden;
+ }
 
 button {
   padding: 15px 25px;

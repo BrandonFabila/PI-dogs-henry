@@ -7,9 +7,9 @@
 
 .NB {
   width: 100dvw;
-  background-color: #1a3550;
+  background-image:url("../../public/extra/background.jpg");
+  background-repeat:initial;
 }
-
 
 .navbar li {
   color: #fff;
@@ -72,21 +72,17 @@
 
 .container {
   display: flex;
-  -webkit-box-pack: center;
-  place-content: center;
-  align-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction:row;
+  justify-content:space-evenly;
+  align-content: space-around;
+  flex-wrap: wrap ;
   width: 100dvw;
-  
   background-image:url("../../public/extra/background.jpg");
   background-repeat:initial;
 }
 
 .cardHome {
-  margin: 0 5px 0 5px;
+  margin: 0;
 }
 
 .welcome {

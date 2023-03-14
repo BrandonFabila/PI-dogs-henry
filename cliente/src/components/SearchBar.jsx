@@ -35,7 +35,7 @@ export default function SearchBar() {
         <div className={styles.cont} >
             <ul className={styles.buts}>
                 <li>
-                    <Link to='/'><button className={styles.button}>Home</button></Link>
+                    <Link to='/home'><button className={styles.button}>Home</button></Link>
                 </li>
                 <li>
                     <button className={styles.button} onClick={e => { handleClick(e) }}><span>Actualizar</span></button>
@@ -43,6 +43,8 @@ export default function SearchBar() {
                 <li>
                     <Link to='/dogs' ><button className={styles.button}><span>Crear Perro</span></button></Link>
                 </li>
+
+            <div className={styles.searchtwo} >
             <div className={styles.inp} >
                 <input
                     type='text'
@@ -57,11 +59,12 @@ export default function SearchBar() {
                 <button
                     type='submit'
                     onClick={e => handleSubmit(e)}
-                    className={styles.button}
+                    className={styles.buttonBuscar}
                     >
-                    <span><strong>Buscar</strong></span>
+                    Buscar
                 </button>
             </div>
+            </div>    
             </ul>
         </div>
     )
